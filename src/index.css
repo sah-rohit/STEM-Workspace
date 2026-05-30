@@ -1,0 +1,569 @@
+@import url('https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@300;400&family=Cutive+Mono&family=Inconsolata:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 20% 96%;
+    --foreground: 210 29% 24%;
+    --card: 0 0% 100%;
+    --card-foreground: 210 29% 24%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 29% 24%;
+    --primary: 355 79% 57%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 29% 24%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 40 20% 90%;
+    --muted-foreground: 210 15% 40%;
+    --accent: 203 54% 46%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 210 29% 24%;
+    --input: 210 29% 24%;
+    --ring: 355 79% 57%;
+    --radius: 0rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-background text-foreground pl-2.5 lg:pl-0;
+    font-family: 'Inconsolata', 'Cutive Mono', monospace;
+    overflow-x: hidden;
+  }
+}
+
+/* Noise texture overlay */
+.noise-bg {
+  background-color: #F5F1E8;
+  position: relative;
+}
+
+.noise-bg::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Western Slab Serif Display Font */
+.font-display {
+  font-family: 'Londrina Solid', cursive;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.font-display-alt {
+  font-family: 'Cutive Mono', monospace;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* Typewriter Body Font */
+.font-body {
+  font-family: 'Inconsolata', monospace;
+}
+
+/* Vintage ticket button */
+.ticket-btn {
+  position: relative;
+  background: #E63946;
+  color: white;
+  padding: 1rem 2.5rem;
+  font-family: 'Cutive Mono', monospace;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border: none;
+  clip-path: polygon(10% 0%, 90% 0%, 100% 25%, 100% 75%, 90% 100%, 10% 100%, 0% 75%, 0% 25%);
+  transition: all 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.ticket-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.ticket-btn:hover {
+  background: #1D3557;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(29, 53, 87, 0.3);
+}
+
+.ticket-btn:hover::before {
+  left: 100%;
+}
+
+/* Thick frame styling */
+.thick-frame {
+  border: 6px solid #1D3557;
+  box-shadow: 
+    inset 0 0 0 2px rgba(230, 57, 70, 0.1),
+    0 0 0 2px rgba(230, 57, 70, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+@media (min-width: 640px) {
+  .thick-frame {
+    border-width: 12px;
+    box-shadow: 
+      inset 0 0 0 4px rgba(230, 57, 70, 0.1),
+      0 0 0 4px rgba(230, 57, 70, 0.1);
+  }
+}
+
+.thick-frame::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  bottom: 4px;
+  border: 2px solid #E63946;
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* Vintage menu card */
+.vintage-menu-card {
+  background: white;
+  border: 3px solid #1D3557;
+  position: relative;
+  box-shadow: 4px 4px 0 #E63946;
+}
+
+@media (min-width: 640px) {
+  .vintage-menu-card {
+    border-width: 4px;
+    box-shadow: 8px 8px 0 #E63946;
+  }
+}
+
+.vintage-menu-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: repeating-linear-gradient(
+    90deg,
+    #E63946 0px,
+    #E63946 10px,
+    #1D3557 10px,
+    #1D3557 20px
+  );
+}
+
+/* Poster-style section blocks */
+.poster-block {
+  position: relative;
+  padding: 3rem;
+  border: 6px solid #1D3557;
+}
+
+.poster-block::before {
+  content: '';
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  border: 2px dashed rgba(230, 57, 70, 0.3);
+  pointer-events: none;
+}
+
+/* Line separator */
+.line-separator {
+  height: 3px;
+  background: repeating-linear-gradient(
+    90deg,
+    #E63946 0px,
+    #E63946 20px,
+    transparent 20px,
+    transparent 40px
+  );
+  margin: 2rem 0;
+}
+
+/* Razor sharp underline */
+.razor-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.razor-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: #E63946;
+  transition: width 0.4s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.razor-underline:hover::after {
+  width: 100%;
+}
+
+/* Geometric color blocks */
+.geo-block-red {
+  background: #E63946;
+  padding: 1rem 1.5rem;
+  color: white;
+  position: relative;
+}
+
+.geo-block-red::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 12px solid #E63946;
+}
+
+.geo-block-blue {
+  background: #1D3557;
+  padding: 1rem 1.5rem;
+  color: white;
+  position: relative;
+}
+
+/* Film grain effect */
+.film-grain {
+  position: relative;
+}
+
+.film-grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.08;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+/* Input vintage style */
+.input-vintage {
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid #1D3557;
+  padding: 0.75rem 0;
+  font-family: 'Inconsolata', monospace;
+  font-size: 1rem;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.input-vintage:focus {
+  outline: none;
+  border-bottom-color: #E63946;
+  background: rgba(230, 57, 70, 0.05);
+  padding-left: 0.5rem;
+}
+
+.input-vintage::placeholder {
+  color: #1D3557;
+  opacity: 0.6;
+}
+
+/* Star rating */
+.star-rating {
+  color: #E63946;
+  letter-spacing: 0.25rem;
+}
+
+/* Navigation pill */
+.nav-pill {
+  background: #1D3557;
+  color: white;
+  padding: 0.5rem 1.25rem;
+  font-family: 'Cutive Mono', monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: none;
+  transition: all 0.3s cubic-bezier(0.76, 0, 0.24, 1);
+  cursor: pointer;
+  clip-path: polygon(15% 0%, 85% 0%, 100% 50%, 85% 100%, 15% 100%, 0% 50%);
+}
+
+.nav-pill:hover {
+  background: #E63946;
+  transform: translateY(-1px);
+}
+
+/* Barber pole animation */
+@keyframes barberPole {
+  0% { background-position: 0% 0%; }
+  100% { background-position: 100% 0%; }
+}
+
+.barber-pole-stripes {
+  background: repeating-linear-gradient(
+    45deg,
+    #E63946,
+    #E63946 20px,
+    white 20px,
+    white 40px,
+    #1D3557 40px,
+    #1D3557 60px,
+    white 60px,
+    white 80px
+  );
+  background-size: 200% 200%;
+  animation: barberPole 20s linear infinite;
+}
+
+/* Fade in animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Shimmer effect */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer-text {
+  background: linear-gradient(
+    90deg,
+    #1D3557 0%,
+    #E63946 25%,
+    #1D3557 50%,
+    #E63946 75%,
+    #1D3557 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 5s linear infinite;
+}
+
+/* Scroll reveal */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.scroll-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Image hover zoom */
+.img-zoom {
+  overflow: hidden;
+}
+
+.img-zoom img {
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.img-zoom:hover img {
+  transform: scale(1.08);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F5F1E8;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1D3557;
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #E63946;
+}
+
+/* Mechanical Matrix brackets */
+.matrix-bracket {
+  position: relative;
+  border-left: 3px solid #1D3557;
+  border-right: 3px solid #1D3557;
+}
+
+.matrix-bracket::before,
+.matrix-bracket::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #1D3557;
+}
+
+.matrix-bracket::before {
+  top: 0;
+  clip-path: polygon(0 0, 8px 0, 8px 100%, calc(100% - 8px) 100%, calc(100% - 8px) 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.matrix-bracket::after {
+  bottom: 0;
+  clip-path: polygon(0 0, 8px 0, 8px 100%, calc(100% - 8px) 100%, calc(100% - 8px) 0, 100% 0, 100% 100%, 0 100%);
+}
+
+/* Fluid Responsive canvas container */
+.canvas-container {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Monospaced diagnostic typewriter logs wrap */
+.log-output-pre {
+  white-space: pre-wrap !important;
+  word-wrap: break-word !important;
+  overflow-wrap: break-word !important;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* Stacking grids for mobile inputs */
+@media (max-width: 640px) {
+  .inputs-stack {
+    grid-template-cols: 1fr !important;
+  }
+}
+
+/* Vintage Ledger Table Style for statistics explorer */
+.ledger-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Inconsolata', monospace;
+  font-size: 0.75rem;
+  color: #1D3557;
+  border: 2px solid #1D3557;
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.ledger-table th {
+  background-color: #F5F1E8;
+  color: #1D3557;
+  font-family: 'Londrina Solid', cursive;
+  text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 2px solid #1D3557;
+  border-right: 1px dashed rgba(29, 53, 87, 0.3);
+  text-align: left;
+}
+
+.ledger-table td {
+  padding: 0.45rem 0.75rem;
+  border-bottom: 1px dashed rgba(29, 53, 87, 0.25);
+  border-right: 1px dashed rgba(29, 53, 87, 0.25);
+}
+
+.ledger-table tr:last-child td {
+  border-bottom: none;
+}
+
+.ledger-table tr:nth-child(even) {
+  background-color: rgba(245, 241, 232, 0.5);
+}
+
+/* Global Mobile Layout & Spacing Overrides for high-fidelity UI/UX on small screens */
+@media (max-width: 640px) {
+  /* Tighten up paddings inside all apparatus cards to make them incredibly spacious */
+  .vintage-menu-card {
+    padding: 0.75rem !important; /* 12px padding instead of 24px/20px */
+  }
+  
+  /* Remove redundant nested horizontal padding from the active apparatus inside cabinet */
+  #workshop-cabinet .max-w-7xl {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+  }
+  
+  /* Shrink ledger tables and forms so they fit neatly without wrapping awkwardly */
+  .ledger-table th, 
+  .ledger-table td {
+    padding: 0.35rem 0.45rem !important;
+    font-size: 0.7rem !important;
+  }
+
+  /* Make sure inputs and buttons fit comfortably */
+  .input-vintage {
+    font-size: 0.85rem !important;
+    padding: 0.5rem 0 !important;
+  }
+
+  .ticket-btn {
+    padding: 0.75rem 1.5rem !important;
+    font-size: 0.8rem !important;
+  }
+
+  /* Tighten double border headers for small devices */
+  .thick-frame {
+    box-shadow: 
+      inset 0 0 0 1.5px rgba(230, 57, 70, 0.08),
+      0 0 0 1.5px rgba(230, 57, 70, 0.08) !important;
+  }
+
+  /* Stack inputs smoothly on mobile */
+  .matrix-bracket {
+    padding: 0.5rem !important;
+    gap: 0.35rem !important;
+  }
+}

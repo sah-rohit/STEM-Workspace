@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#1D3557" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>STEM Workshop – 1950s Solo Computational Atelier</title>
+    <meta name="description" content="A premium client-side 1950s math & science drafting workshop. Explore our matrix workbench, algebraic solver, chemical balancer, numerical plotter, and data explorer. Designed as a solo student project." />
+    <meta name="keywords" content="STEM Workshop, 1950s computational atelier, client-side math, linear algebra, matrix lab, equation solver, chemical reaction balancer, numerical methods playground, stats data explorer, student project" />
+    <link rel="manifest" href="./manifest.json" />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="apple-touch-icon" href="./favicon.svg" />
+    <script type="module" crossorigin src="./assets/index-BUg498pa.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-D1JDpPkg.css">
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('./sw.js').catch(() => {});
+        });
+      }
+    </script>
+  </body>
+</html>

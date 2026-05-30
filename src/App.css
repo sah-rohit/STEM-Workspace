@@ -1,0 +1,32 @@
+/* App-specific styles */
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Selection color */
+::selection {
+  background: #E63946;
+  color: white;
+}
+
+/* Focus styles */
+*:focus-visible {
+  outline: 2px solid #E63946;
+  outline-offset: 2px;
+}
+
+/* Image loading */
+img {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+img[loading="lazy"] {
+  opacity: 0;
+}
+
+img.loaded {
+  opacity: 1;
+}

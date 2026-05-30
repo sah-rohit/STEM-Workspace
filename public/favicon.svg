@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <!-- Parchment background circle -->
+  <circle cx="64" cy="64" r="60" fill="#F5F1E8" stroke="#1D3557" stroke-width="5"/>
+  <circle cx="64" cy="64" r="52" fill="none" stroke="#1D3557" stroke-width="2" stroke-dasharray="4 3"/>
+  <!-- Atom nucleus -->
+  <circle cx="64" cy="64" r="8" fill="#E63946"/>
+  <!-- Electron orbits -->
+  <ellipse cx="64" cy="64" rx="34" ry="12" fill="none" stroke="#1D3557" stroke-width="2.5" transform="rotate(0 64 64)"/>
+  <ellipse cx="64" cy="64" rx="34" ry="12" fill="none" stroke="#1D3557" stroke-width="2.5" transform="rotate(60 64 64)"/>
+  <ellipse cx="64" cy="64" rx="34" ry="12" fill="none" stroke="#1D3557" stroke-width="2.5" transform="rotate(120 64 64)"/>
+  <!-- Electron dots -->
+  <circle cx="98" cy="64" r="4" fill="#E63946"/>
+  <circle cx="47" cy="34" r="4" fill="#E63946"/>
+  <circle cx="47" cy="94" r="4" fill="#E63946"/>
+</svg>
