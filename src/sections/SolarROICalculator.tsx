@@ -231,10 +231,10 @@ const SolarROICalculator = () => {
 
   return (
     <div ref={sectionRef} className="w-full py-4 space-y-6" id="solar-roi-calculator">
-      <div className="grid lg:grid-cols-12 gap-8 items-start">
+      <div className="grid lg:grid-cols-2 gap-8 items-start">
         
-        {/* Left Inputs form panel (5 cols) */}
-        <div className="lg:col-span-5 space-y-6">
+        {/* Left Inputs form panel */}
+        <div className="space-y-6">
           <div className="scroll-reveal">
             <span className="geo-block-red text-[11px] font-bold tracking-widest inline-flex items-center gap-2">
               <Sun className="w-4 h-4 animate-pulse" />
@@ -251,20 +251,21 @@ const SolarROICalculator = () => {
               🌍 APPARATUS GEOGRAPHIC REGISTER
             </span>
             <div className="space-y-3 font-body text-xs">
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-3 w-full">
                 <input
                   type="text"
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
                   placeholder="City, State / ZIP code"
-                  className="flex-1 input-vintage text-xs font-bold text-[#1D3557] bg-[#F5F1E8] border border-[#1D3557] py-2 px-3 outline-none"
+                  className="flex-1 min-w-[200px] input-vintage text-xs font-bold text-[#1D3557] bg-[#F5F1E8] border border-[#1D3557] py-2 px-3 outline-none"
                 />
                 <button
                   onClick={handleFetchSolarData}
                   disabled={isFetching || !address.trim()}
-                  className="ticket-btn py-1.5 px-3.5 bg-[#1D3557] hover:bg-[#E63946] flex items-center justify-center disabled:opacity-50"
+                  className="ticket-btn flex-1 min-w-[120px] sm:flex-initial bg-[#1D3557] hover:bg-[#E63946] text-white py-2 px-4 flex items-center justify-center gap-2 disabled:opacity-50 text-center"
                 >
                   <Search className="w-4 h-4" />
+                  <span>SEARCH REGION</span>
                 </button>
               </div>
               <span className="font-body text-[9px] text-[#1D3557]/50 block leading-normal">
@@ -333,8 +334,8 @@ const SolarROICalculator = () => {
           </div>
         </div>
 
-        {/* Right monthly bar chart plotting (7 cols) */}
-        <div className="lg:col-span-7 space-y-6">
+        {/* Right monthly bar chart plotting */}
+        <div className="space-y-6">
           <div className="scroll-reveal vintage-menu-card p-4 sm:p-5">
             <span className="font-display text-sm text-[#1D3557] block mb-3 border-b border-dashed border-[#1D3557]/20 pb-1.5">
               📊 ESTIMATED MONTHLY YIELD VS UTILITY CONSUMPTION
@@ -360,7 +361,7 @@ const SolarROICalculator = () => {
             {/* ROI analytical printouts */}
             <div className="relative mt-4">
               <span className="absolute top-2 right-4 font-display text-[9px] text-[#C5A059] font-bold tracking-widest z-10">FINANCIAL SHEET OUT</span>
-              <pre className="w-full text-[10px] bg-[#F4ECD8] text-[#332211] font-body p-4 border-2 border-[#C5A059] rounded-sm max-h-[220px] overflow-x-auto shadow-inner leading-relaxed whitespace-pre">
+              <pre className="w-full text-[10px] bg-[#F4ECD8] text-[#332211] font-body p-4 border-2 border-[#C5A059] rounded-sm max-h-[220px] overflow-x-auto shadow-inner leading-relaxed whitespace-pre-wrap">
                 {logOutput}
               </pre>
             </div>

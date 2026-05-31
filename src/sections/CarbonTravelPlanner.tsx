@@ -186,10 +186,10 @@ const CarbonTravelPlanner = () => {
 
   return (
     <div ref={sectionRef} className="w-full py-4 space-y-6" id="carbon-travel-planner">
-      <div className="grid lg:grid-cols-12 gap-8 items-start">
+      <div className="grid lg:grid-cols-2 gap-8 items-start">
         
-        {/* Left Inputs form (5 cols) */}
-        <div className="lg:col-span-5 space-y-6">
+        {/* Left Inputs form */}
+        <div className="space-y-6">
           <div className="scroll-reveal">
             <span className="geo-block-red text-[11px] font-bold tracking-widest inline-flex items-center gap-2">
               <Globe className="w-4 h-4 text-white" />
@@ -267,8 +267,8 @@ const CarbonTravelPlanner = () => {
           </div>
         </div>
 
-        {/* Right Output visualizer (7 cols) */}
-        <div className="lg:col-span-7 space-y-6">
+        {/* Right Output visualizer */}
+        <div className="space-y-6">
           <div className="scroll-reveal vintage-menu-card p-4 sm:p-5">
             <span className="font-display text-sm text-[#1D3557] block mb-3 border-b border-dashed border-[#1D3557]/20 pb-1.5">
               📊 CO₂e EMISSIONS COMPARISON (kg)
@@ -287,7 +287,7 @@ const CarbonTravelPlanner = () => {
             {/* Printout ticket */}
             <div className="relative mt-4">
               <span className="absolute top-2 right-4 font-display text-[9px] text-[#C5A059] font-bold tracking-widest z-10">PLANNER TICKET OUT</span>
-              <pre className="w-full text-[10px] bg-[#F4ECD8] text-[#332211] font-body p-4 border-2 border-[#C5A059] rounded-sm max-h-[220px] overflow-x-auto shadow-inner leading-relaxed whitespace-pre">
+              <pre className="w-full text-[10px] bg-[#F4ECD8] text-[#332211] font-body p-4 border-2 border-[#C5A059] rounded-sm max-h-[220px] overflow-x-auto shadow-inner leading-relaxed whitespace-pre-wrap">
                 {logOutput}
               </pre>
             </div>

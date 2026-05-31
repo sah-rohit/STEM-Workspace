@@ -451,10 +451,10 @@ const CircuitSimulator = () => {
 
   return (
     <div ref={sectionRef} className="w-full py-4 space-y-6" id="logic-gate-simulator">
-      <div className="grid lg:grid-cols-12 gap-8 items-start">
+      <div className="grid lg:grid-cols-2 gap-8 items-start">
         
-        {/* Left Input panel (5 cols) */}
-        <div className="lg:col-span-5 space-y-6">
+        {/* Left Input panel */}
+        <div className="space-y-6">
           <div className="scroll-reveal">
             <span className="geo-block-red text-[11px] font-bold tracking-widest inline-flex items-center gap-2">
               <Cpu className="w-4 h-4" />
@@ -620,8 +620,8 @@ const CircuitSimulator = () => {
           </div>
         </div>
 
-        {/* Right Output panel (7 cols) */}
-        <div className="lg:col-span-7 space-y-6">
+        {/* Right Output panel */}
+        <div className="space-y-6">
           <div className="scroll-reveal vintage-menu-card p-4 sm:p-5">
             <span className="font-display text-xs sm:text-sm text-[#1D3557] block mb-3 border-b border-dashed border-[#1D3557]/20 pb-1.5">
               📐 BLUEPRINT SCHEMATIC MAP
@@ -647,7 +647,7 @@ const CircuitSimulator = () => {
             {/* Truth Table scrolling ticker */}
             <div className="relative mt-4">
               <span className="absolute top-2 right-4 font-display text-[9px] text-[#C5A059] font-bold tracking-widest z-10">LOGIC LEDGER OUT</span>
-              <pre className="w-full text-[10px] bg-[#F4ECD8] text-[#332211] font-body p-4 border-2 border-[#C5A059] rounded-sm max-h-[220px] overflow-x-auto overflow-y-auto shadow-inner leading-normal whitespace-pre">
+              <pre className="w-full text-[10px] bg-[#F4ECD8] text-[#332211] font-body p-4 border-2 border-[#C5A059] rounded-sm max-h-[220px] overflow-x-auto overflow-y-auto shadow-inner leading-normal whitespace-pre-wrap">
                 {logOutput || 'BOARD READY. ADD COMPONENTS OR ENTER AN EQUATION.'}
               </pre>
             </div>

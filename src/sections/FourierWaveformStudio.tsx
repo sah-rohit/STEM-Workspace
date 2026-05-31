@@ -294,10 +294,10 @@ const FourierWaveformStudio = () => {
 
   return (
     <div ref={sectionRef} className="w-full py-4 space-y-6" id="fourier-waveform-studio">
-      <div className="grid lg:grid-cols-12 gap-8 items-start">
+      <div className="grid lg:grid-cols-2 gap-8 items-start">
         
         {/* Left Control card (5 cols) */}
-        <div className="lg:col-span-5 space-y-6">
+        <div className="space-y-6">
           <div className="scroll-reveal">
             <span className="geo-block-red text-[11px] font-bold tracking-widest inline-flex items-center gap-2">
               <Radio className="w-4 h-4" />
@@ -347,10 +347,10 @@ const FourierWaveformStudio = () => {
             <span className="font-display text-sm text-[#1D3557] block mb-3 border-b border-dashed border-[#1D3557]/20 pb-1.5">
               🔊 ACOUSTIC VACUUM TUBE OSCILLATOR
             </span>
-            <div className="flex gap-4 items-center">
+            <div className="flex flex-wrap gap-3 items-center w-full">
               <button
                 onClick={toggleAudio}
-                className={`ticket-btn flex-1 py-3 text-xs font-bold flex items-center justify-center gap-2 transition-all ${
+                className={`ticket-btn flex-1 min-w-[200px] py-3 text-xs font-bold flex items-center justify-center gap-2 transition-all ${
                   isPlaying ? 'bg-[#E63946] text-white animate-pulse' : 'bg-[#1D3557] text-[#FFFDF0]'
                 }`}
               >
@@ -396,7 +396,7 @@ const FourierWaveformStudio = () => {
         </div>
 
         {/* Right spectrum canvas (7 cols) */}
-        <div className="lg:col-span-7 space-y-6">
+        <div className="space-y-6">
           <div className="scroll-reveal vintage-menu-card p-4 sm:p-5">
             <span className="font-display text-sm text-[#1D3557] block mb-3 border-b border-dashed border-[#1D3557]/20 pb-1.5">
               📈 TIME DOMAIN SYNTHESIZED WAVEFORM
@@ -434,7 +434,7 @@ const FourierWaveformStudio = () => {
             {/* Logs printout */}
             <div className="relative mt-4">
               <span className="absolute top-2 right-4 font-display text-[9px] text-[#C5A059] font-bold tracking-widest z-10">SPECTRUM TICKET</span>
-              <pre className="w-full text-[10px] bg-[#F4ECD8] text-[#332211] font-body p-4 border-2 border-[#C5A059] rounded-sm max-h-[200px] overflow-x-auto shadow-inner leading-relaxed whitespace-pre">
+              <pre className="w-full text-[10px] bg-[#F4ECD8] text-[#332211] font-body p-4 border-2 border-[#C5A059] rounded-sm max-h-[200px] overflow-x-auto shadow-inner leading-relaxed whitespace-pre-wrap">
                 {logOutput}
               </pre>
             </div>

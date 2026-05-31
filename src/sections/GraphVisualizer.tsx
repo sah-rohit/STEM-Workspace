@@ -544,10 +544,10 @@ const GraphVisualizer = () => {
 
   return (
     <div ref={sectionRef} className="w-full py-4 space-y-6" id="graph-visualizer">
-      <div className="grid lg:grid-cols-12 gap-8 items-start">
+      <div className="grid lg:grid-cols-2 gap-8 items-start">
         
-        {/* Left Control card (5 cols) */}
-        <div className="lg:col-span-5 space-y-6">
+        {/* Left Control card */}
+        <div className="space-y-6">
           <div className="scroll-reveal">
             <span className="geo-block-red text-[11px] font-bold tracking-widest inline-flex items-center gap-2">
               <Play className="w-4 h-4 animate-pulse" />
@@ -653,22 +653,22 @@ const GraphVisualizer = () => {
 
           {/* Animation navigation player */}
           {animSteps.length > 0 && (
-            <div className="scroll-reveal vintage-menu-card p-4 sm:p-5 flex items-center justify-between">
+            <div className="scroll-reveal vintage-menu-card p-4 sm:p-5 flex flex-wrap items-center justify-between gap-3">
               <span className="font-display text-[10px] text-[#C5A059] font-bold">
                 STEP: {currentStepIdx + 1} / {animSteps.length}
               </span>
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2 w-full sm:w-auto">
                 <button
                   onClick={handlePrevStep}
                   disabled={currentStepIdx <= 0}
-                  className="ticket-btn py-1 px-3 text-[10px] bg-[#1D3557] disabled:opacity-50"
+                  className="ticket-btn flex-1 min-w-[80px] sm:flex-initial py-1 px-3 text-[10px] bg-[#1D3557] disabled:opacity-50 text-center"
                 >
                   [ BACK ]
                 </button>
                 <button
                   onClick={handleNextStep}
                   disabled={currentStepIdx >= animSteps.length - 1}
-                  className="ticket-btn py-1 px-3 text-[10px] bg-[#1D3557] disabled:opacity-50"
+                  className="ticket-btn flex-1 min-w-[80px] sm:flex-initial py-1 px-3 text-[10px] bg-[#1D3557] disabled:opacity-50 text-center"
                 >
                   [ NEXT ]
                 </button>
@@ -677,8 +677,8 @@ const GraphVisualizer = () => {
           )}
         </div>
 
-        {/* Right Canvas drawer (7 cols) */}
-        <div className="lg:col-span-7 space-y-6">
+        {/* Right Canvas drawer */}
+        <div className="space-y-6">
           <div className="scroll-reveal vintage-menu-card p-4 sm:p-5">
             <span className="font-display text-sm text-[#1D3557] block mb-3 border-b border-dashed border-[#1D3557]/20 pb-1.5">
               📐 BLUEPRINT NODE CONNECTOR
@@ -705,7 +705,7 @@ const GraphVisualizer = () => {
             {/* Complexity and progress ledger */}
             <div className="relative mt-4">
               <span className="absolute top-2 right-4 font-display text-[9px] text-[#C5A059] font-bold tracking-widest z-10">THEORY LEDGER TICKET</span>
-              <pre className="w-full text-[10px] bg-[#F4ECD8] text-[#332211] font-body p-4 border-2 border-[#C5A059] rounded-sm max-h-[220px] overflow-x-auto shadow-inner leading-relaxed whitespace-pre">
+              <pre className="w-full text-[10px] bg-[#F4ECD8] text-[#332211] font-body p-4 border-2 border-[#C5A059] rounded-sm max-h-[220px] overflow-x-auto shadow-inner leading-relaxed whitespace-pre-wrap">
                 {logOutput || 'READY. ADD NODES/EDGES OR SELECT SOURCE/TARGET TO CALCULATE PATHS.'}
               </pre>
             </div>

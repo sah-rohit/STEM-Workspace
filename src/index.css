@@ -218,6 +218,83 @@
   margin: 2rem 0;
 }
 
+/* Mobile layout fixes: reduce padding, font sizes, and prevent horizontal overflow */
+@media (max-width: 640px) {
+  .vintage-menu-card {
+    padding: 0.75rem !important;
+    border-width: 2px !important;
+    box-shadow: 3px 3px 0 #E63946 !important;
+  }
+
+  .thick-frame {
+    border-width: 8px !important;
+  }
+
+  .ticket-btn {
+    padding: 0.45rem 0.9rem !important;
+    font-size: 0.78rem !important;
+    clip-path: polygon(6% 0%, 94% 0%, 100% 22%, 100% 78%, 94% 100%, 6% 100%, 0% 78%, 0% 22%) !important;
+  }
+
+  /* Ensure inputs and selects shrink to container width */
+  input, select, textarea, .input-vintage, .ticket-btn {
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Reduce excessive paddings inside common cards */
+  .vintage-menu-card > * { padding: 0.25rem 0 !important; }
+  .vintage-menu-card .line-separator { margin-top: 0.5rem; margin-bottom: 0.5rem; }
+
+  /* Make canvases scale down and not force overflow */
+  canvas { max-width: 100% !important; height: auto !important; }
+
+  /* Reduce header / title sizes on mobile */
+  h2.font-display { font-size: 1.25rem !important; line-height: 1.2 !important; }
+
+  /* Ensure container padding is compact */
+  section, .thick-frame, .vintage-menu-card, .poster-block { padding-left: 0.6rem !important; padding-right: 0.6rem !important; }
+
+  /* Prevent horizontal overflow from long pre blocks */
+  pre { white-space: pre-wrap; word-break: break-word; }
+
+  /* Override utility classes that force large widths on mobile */
+  .flex-1 {
+    flex: 0 0 auto !important;
+    width: 100% !important;
+  }
+
+  .flex-grow {
+    flex-grow: 0 !important;
+  }
+
+  /* Reset any min-width utility usages that can force overflow */
+  [class*="min-w-"] {
+    min-width: 0 !important;
+  }
+
+  /* Make ticket buttons full width but allow inline layout on larger small screens */
+  .ticket-btn {
+    width: 100% !important;
+    display: inline-flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  /* Ensure flex groups wrap neatly on mobile */
+  .vintage-menu-card .flex, .vintage-menu-card .flex-wrap {
+    flex-wrap: wrap !important;
+    gap: 0.4rem !important;
+  }
+
+  /* Make small inputs shrink instead of forcing horizontal scroll */
+  .vintage-menu-card input, .vintage-menu-card select, .vintage-menu-card textarea {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+}
+
 /* Razor sharp underline */
 .razor-underline {
   position: relative;
