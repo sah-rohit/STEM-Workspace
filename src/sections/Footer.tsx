@@ -26,7 +26,9 @@ const Footer = () => {
             </p>
             <div className="flex gap-3">
               <a 
-                href="#" 
+                href="https://github.com/sah-rohit/STEM-Workspace" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 border-2 border-white/30 flex items-center justify-center hover:border-[#E63946] hover:bg-[#E63946] transition-all duration-300"
               >
                 <Github className="w-5 h-5" />

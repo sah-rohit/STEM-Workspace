@@ -589,7 +589,7 @@ const GeometryLab = () => {
             <span className="font-display text-sm text-[#1D3557] block mb-3 border-b border-dashed border-[#1D3557]/20 pb-1.5">
               📐 CONSTRUCTION UTILITIES
             </span>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-center mb-4">
+            <div className="flex flex-wrap gap-2 justify-center mb-4">
               {[
                 { name: 'select', label: '🔍 Select / Measure' },
                 { name: 'point', label: '● Place Point' },
@@ -605,10 +605,10 @@ const GeometryLab = () => {
                     setCircleBuffer(null);
                     setPolygonBuffer([]);
                   }}
-                  className={`ticket-btn py-2 px-1 text-[10px] sm:text-xs font-bold leading-none ${
+                  className={`ticket-btn py-2 px-2.5 text-[10px] sm:text-xs font-bold leading-none flex-grow ${
                     mode === m.name ? 'bg-[#E63946] text-[#FFFDF0]' : 'bg-[#1D3557] text-[#FFFDF0]'
                   }`}
-                  style={{ gridColumn: m.name === 'select' ? 'span 2' : 'auto' }}
+                  style={{ minWidth: m.name === 'select' ? '100%' : 'calc(50% - 4px)' }}
                 >
                   {m.label}
                 </button>
@@ -650,7 +650,7 @@ const GeometryLab = () => {
                 width="480"
                 height="480"
                 onClick={handleCanvasClick}
-                className="block bg-[#F4ECD8] border border-[#C5A059]/40 cursor-crosshair mx-auto max-w-full"
+                className="block bg-[#F4ECD8] border border-[#C5A059]/40 cursor-crosshair mx-auto w-full h-auto aspect-square"
               />
             </div>
 

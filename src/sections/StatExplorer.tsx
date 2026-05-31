@@ -564,7 +564,7 @@ const StatExplorer = () => {
               {/* Presets */}
               <div className="mb-6">
                 <label className="font-body text-xs font-bold text-[#1D3557] block mb-1.5">ATELIER METADATA PRESETS:</label>
-                <div className="flex gap-2">
+                <div className="flex flex-wrap gap-2">
                   <button onClick={() => loadPreset('normal')} className="ticket-btn text-[10px] py-1 px-3 bg-[#1D3557] text-white">Standard Cage Readings</button>
                   <button onClick={() => loadPreset('skewed')} className="ticket-btn text-[10px] py-1 px-3 bg-[#1D3557] text-white">Exponential Skew</button>
                   <button onClick={() => loadPreset('paired')} className="ticket-btn text-[10px] py-1 px-3 bg-[#E63946] text-white">Paired Gage Trend</button>
@@ -572,17 +572,17 @@ const StatExplorer = () => {
               </div>
 
               {/* Action tickets */}
-              <div className="flex gap-4 border-t border-dashed border-[#1D3557]/10 pt-4">
+              <div className="flex flex-wrap gap-3 border-t border-dashed border-[#1D3557]/10 pt-4">
                 <button 
                   onClick={executeAnalysis}
-                  className="ticket-btn flex-1 bg-[#E63946] text-white hover:bg-[#1D3557] font-bold text-xs py-2.5 px-4 flex items-center justify-center gap-1.5"
+                  className="ticket-btn flex-1 min-w-[200px] bg-[#E63946] text-white hover:bg-[#1D3557] font-bold text-xs py-2.5 px-4 flex items-center justify-center gap-1.5"
                 >
                   <Check className="w-4 h-4" />
                   COMPUTE GAGE DATA
                 </button>
                 <button 
                   onClick={wipeLabRecord}
-                  className="ticket-btn bg-[#1D3557] text-white hover:bg-red-800 font-bold text-xs py-2.5 px-4"
+                  className="ticket-btn flex-1 sm:flex-initial bg-[#1D3557] text-white hover:bg-red-800 font-bold text-xs py-2.5 px-4 text-center"
                 >
                   SHRED LEDGER
                 </button>
@@ -600,26 +600,28 @@ const StatExplorer = () => {
               {stats && inputMode === 'single' && (
                 <div className="mt-6 pt-4 border-t border-dashed border-[#1D3557]/10 animate-fadeIn">
                   <span className="font-display text-md text-[#E63946] block mb-3">V. DETAILED ATELIER SUMMARY LEDGER</span>
-                  <table className="ledger-table">
-                    <thead>
-                      <tr>
-                        <th>Statistical Gage Indicator</th>
-                        <th>Atelier Computed Value</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr><td><strong>Total Counts (N)</strong></td><td>{stats.N}</td></tr>
-                      <tr><td><strong>Arithmetic Mean (μ)</strong></td><td>{stats.mean.toFixed(4)}</td></tr>
-                      <tr><td><strong>Apparatus Median</strong></td><td>{stats.median.toFixed(4)}</td></tr>
-                      <tr><td><strong>Recurrent Mode</strong></td><td>{stats.modeStr}</td></tr>
-                      <tr><td><strong>Sample Variance (s²)</strong></td><td>{stats.variance.toFixed(4)}</td></tr>
-                      <tr><td><strong>Standard Deviation (s)</strong></td><td>{stats.stdDev.toFixed(4)}</td></tr>
-                      <tr><td><strong>Lower Quartile (Q1)</strong></td><td>{stats.Q1.toFixed(4)}</td></tr>
-                      <tr><td><strong>Upper Quartile (Q3)</strong></td><td>{stats.Q3.toFixed(4)}</td></tr>
-                      <tr><td><strong>Interquartile Range (IQR)</strong></td><td>{stats.IQR.toFixed(4)}</td></tr>
-                      <tr><td className="text-red-700"><strong>Tukey Fences Outliers</strong></td><td className="text-red-700 font-bold">{stats.outlierStr}</td></tr>
-                    </tbody>
-                  </table>
+                  <div className="w-full overflow-x-auto select-text">
+                    <table className="ledger-table min-w-[340px] m-0">
+                      <thead>
+                        <tr>
+                          <th>Statistical Gage Indicator</th>
+                          <th>Atelier Computed Value</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><td><strong>Total Counts (N)</strong></td><td>{stats.N}</td></tr>
+                        <tr><td><strong>Arithmetic Mean (μ)</strong></td><td>{stats.mean.toFixed(4)}</td></tr>
+                        <tr><td><strong>Apparatus Median</strong></td><td>{stats.median.toFixed(4)}</td></tr>
+                        <tr><td><strong>Recurrent Mode</strong></td><td>{stats.modeStr}</td></tr>
+                        <tr><td><strong>Sample Variance (s²)</strong></td><td>{stats.variance.toFixed(4)}</td></tr>
+                        <tr><td><strong>Standard Deviation (s)</strong></td><td>{stats.stdDev.toFixed(4)}</td></tr>
+                        <tr><td><strong>Lower Quartile (Q1)</strong></td><td>{stats.Q1.toFixed(4)}</td></tr>
+                        <tr><td><strong>Upper Quartile (Q3)</strong></td><td>{stats.Q3.toFixed(4)}</td></tr>
+                        <tr><td><strong>Interquartile Range (IQR)</strong></td><td>{stats.IQR.toFixed(4)}</td></tr>
+                        <tr><td className="text-red-700"><strong>Tukey Fences Outliers</strong></td><td className="text-red-700 font-bold">{stats.outlierStr}</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               )}
 
@@ -627,22 +629,24 @@ const StatExplorer = () => {
               {regression && inputMode === 'paired' && (
                 <div className="mt-6 pt-4 border-t border-dashed border-[#1D3557]/10 animate-fadeIn">
                   <span className="font-display text-md text-[#E63946] block mb-3">V. LINEAR TREND SPECIFICATION SHEET</span>
-                  <table className="ledger-table">
-                    <thead>
-                      <tr>
-                        <th>Trendline Variable Parameter</th>
-                        <th>Atelier Mapped Coefficient</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr><td><strong>Gage Counts (N)</strong></td><td>{regression.N}</td></tr>
-                      <tr><td><strong>Trendline Formula</strong></td><td><strong>y = {regression.slope.toFixed(4)}x + {regression.intercept.toFixed(4)}</strong></td></tr>
-                      <tr><td><strong>Line Slope (m)</strong></td><td>{regression.slope.toFixed(6)}</td></tr>
-                      <tr><td><strong>Y-Intercept (c)</strong></td><td>{regression.intercept.toFixed(6)}</td></tr>
-                      <tr><td><strong>Pearson Correlation Coefficient (r)</strong></td><td>{regression.r.toFixed(6)}</td></tr>
-                      <tr><td><strong>Coefficient of Determination (R²)</strong></td><td>{regression.r2.toFixed(6)}</td></tr>
-                    </tbody>
-                  </table>
+                  <div className="w-full overflow-x-auto select-text">
+                    <table className="ledger-table min-w-[340px] m-0">
+                      <thead>
+                        <tr>
+                          <th>Trendline Variable Parameter</th>
+                          <th>Atelier Mapped Coefficient</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr><td><strong>Gage Counts (N)</strong></td><td>{regression.N}</td></tr>
+                        <tr><td><strong>Trendline Formula</strong></td><td><strong>y = {regression.slope.toFixed(4)}x + {regression.intercept.toFixed(4)}</strong></td></tr>
+                        <tr><td><strong>Line Slope (m)</strong></td><td>{regression.slope.toFixed(6)}</td></tr>
+                        <tr><td><strong>Y-Intercept (c)</strong></td><td>{regression.intercept.toFixed(6)}</td></tr>
+                        <tr><td><strong>Pearson Correlation Coefficient (r)</strong></td><td>{regression.r.toFixed(6)}</td></tr>
+                        <tr><td><strong>Coefficient of Determination (R²)</strong></td><td>{regression.r2.toFixed(6)}</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               )}
 

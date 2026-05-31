@@ -280,7 +280,7 @@ const CarbonTravelPlanner = () => {
                 ref={chartCanvasRef}
                 width="500"
                 height="240"
-                className="block bg-[#F4ECD8] border border-[#C5A059]/40 max-w-full mx-auto"
+                className="block bg-[#F4ECD8] border border-[#C5A059]/40 w-full h-auto aspect-[25/12] mx-auto"
               />
             </div>
 

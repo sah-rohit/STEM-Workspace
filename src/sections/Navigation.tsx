@@ -256,8 +256,9 @@ const Navigation = () => {
         )}
       </nav>
 
-      {/* Retro border pole accent on mobile */}
+      {/* Retro border pole accent on mobile - Symmetrical Left & Right */}
       <div className="lg:hidden fixed left-0 top-0 bottom-0 w-2.5 barber-pole-stripes z-40" />
+      <div className="lg:hidden fixed right-0 top-0 bottom-0 w-2.5 barber-pole-stripes z-40" />
     </>
   );
 };

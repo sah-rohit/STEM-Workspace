@@ -319,7 +319,7 @@ const SolarROICalculator = () => {
                 />
               </div>
 
-              <div className="col-span-2">
+              <div className="col-span-1 sm:col-span-2">
                 <label className="font-bold block mb-1">UTILITY COST RATE ($ per kWh):</label>
                 <input
                   type="number"
@@ -346,7 +346,7 @@ const SolarROICalculator = () => {
                 ref={chartCanvasRef}
                 width="500"
                 height="240"
-                className="block bg-[#F4ECD8] border border-[#C5A059]/40 max-w-full mx-auto"
+                className="block bg-[#F4ECD8] border border-[#C5A059]/40 w-full h-auto aspect-[25/12] mx-auto"
               />
             </div>
 

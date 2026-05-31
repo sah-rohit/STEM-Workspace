@@ -1331,7 +1331,7 @@ function App() {
 
       {activeManifestoTab && (
         <div className="fixed inset-0 z-[200] bg-black/55 backdrop-blur-sm flex items-center justify-center p-6 animate-fadeIn">
-          <div className="w-full max-w-3xl bg-[#FFFDF0] border-4 double border-[#1D3557] p-8 shadow-2xl relative flex flex-col md:flex-row gap-6 max-h-[90vh] overflow-y-auto animate-fadeIn">
+          <div className="w-full max-w-3xl bg-[#FFFDF0] border-4 double border-[#1D3557] p-4 sm:p-8 shadow-2xl relative flex flex-col md:flex-row gap-6 max-h-[90vh] overflow-y-auto animate-fadeIn">
             
             <button 
               onClick={() => setActiveManifestoTab(null)}
@@ -1340,7 +1340,7 @@ function App() {
               <X className="w-6 h-6" />
             </button>
 
-            <div className="flex flex-row md:flex-col gap-2 border-b md:border-b-0 md:border-r border-dashed border-[#1D3557]/20 pb-4 md:pb-0 md:pr-4 min-w-[160px]">
+            <div className="flex flex-row md:flex-col gap-2 border-b md:border-b-0 md:border-r border-dashed border-[#1D3557]/20 pb-4 md:pb-0 md:pr-4 min-w-[160px] overflow-x-auto whitespace-nowrap scrollbar-none max-w-full">
               <span className="hidden md:block font-display text-sm text-[#E63946] tracking-widest mb-4">★ MENU DELEGATE ★</span>
               {[
                 { key: 'about', label: 'I. ABOUT LAB', icon: Terminal },
@@ -1354,7 +1354,7 @@ function App() {
                   <button
                     key={item.key}
                     onClick={() => setActiveManifestoTab(item.key as any)}
-                    className={`text-left font-body text-xs font-bold py-2 px-3 flex items-center gap-2 transition-all ${
+                    className={`text-left font-body text-xs font-bold py-2 px-3 flex items-center gap-2 transition-all flex-shrink-0 ${
                       activeManifestoTab === item.key 
                         ? 'bg-[#1D3557] text-[#FFFDF0]' 
                         : 'text-[#1D3557] hover:bg-[#E63946]/5 hover:text-[#E63946]'

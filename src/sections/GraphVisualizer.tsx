@@ -563,7 +563,7 @@ const GraphVisualizer = () => {
             <span className="font-display text-sm text-[#1D3557] block mb-3 border-b border-dashed border-[#1D3557]/20 pb-1.5">
               🛠 EDIT BLUEPRINT NODE GRAPH
             </span>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 mb-4">
+            <div className="flex flex-wrap gap-2 justify-center mb-4">
               {[
                 { name: 'run', label: '🔍 Select / Run' },
                 { name: 'node', label: '● Add Node' },
@@ -575,7 +575,7 @@ const GraphVisualizer = () => {
                     setEditMode(modeOpt.name as any);
                     setEdgeBuffer(null);
                   }}
-                  className={`ticket-btn py-1.5 px-1 text-[10px] sm:text-xs font-bold leading-none ${
+                  className={`ticket-btn py-2 px-2.5 text-[10px] sm:text-xs font-bold leading-none flex-grow flex-1 min-w-[90px] ${
                     editMode === modeOpt.name ? 'bg-[#E63946] text-[#FFFDF0]' : 'bg-[#1D3557] text-[#FFFDF0]'
                   }`}
                 >
@@ -691,7 +691,7 @@ const GraphVisualizer = () => {
                 width="500"
                 height="320"
                 onClick={handleCanvasClick}
-                className="block bg-[#F4ECD8] border border-[#C5A059]/40 cursor-pointer max-w-full mx-auto"
+                className="block bg-[#F4ECD8] border border-[#C5A059]/40 cursor-pointer w-full h-auto aspect-[25/16] mx-auto"
               />
             </div>
 

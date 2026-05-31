@@ -426,17 +426,17 @@ const EquationSolver = () => {
               </div>
 
               {/* Solve Buttons */}
-              <div className="flex gap-4 mt-6 pt-4 border-t-2 dashed border-[#1D3557]/10">
+              <div className="flex flex-wrap gap-3 mt-6 pt-4 border-t-2 dashed border-[#1D3557]/10">
                 <button 
                   onClick={solveEquation}
-                  className="ticket-btn flex-1 flex items-center justify-center gap-2 bg-[#E63946] text-white hover:bg-[#1D3557]"
+                  className="ticket-btn flex-1 min-w-[200px] flex items-center justify-center gap-2 bg-[#E63946] text-white hover:bg-[#1D3557]"
                 >
                   <Sparkles className="w-4 h-4" />
                   ALGEBRAIC ISOLATION
                 </button>
                 <button 
                   onClick={clearInputs}
-                  className="ticket-btn bg-[#1D3557] text-white hover:bg-red-800 flex items-center justify-center gap-1.5 px-4"
+                  className="ticket-btn flex-1 sm:flex-initial bg-[#1D3557] text-white hover:bg-red-800 flex items-center justify-center gap-1.5 px-4"
                 >
                   <RefreshCw className="w-3.5 h-3.5" />
                   WIPE

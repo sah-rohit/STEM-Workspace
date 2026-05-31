@@ -197,7 +197,7 @@ const LeakCostCalculator = () => {
             </span>
 
             {/* Equivalents list visual */}
-            <div className="grid sm:grid-cols-2 gap-3 mb-4 font-body text-xs text-[#1D3557]">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4 font-body text-xs text-[#1D3557]">
               {EQUIVALENTS.map((eq, idx) => {
                 // Convert annual liters back to unit equivalency
                 const annualLiters = waterUnit === 'liters' ? annualWaste : annualWaste / 0.264172;

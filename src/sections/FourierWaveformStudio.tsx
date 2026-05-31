@@ -313,12 +313,12 @@ const FourierWaveformStudio = () => {
             <span className="font-display text-sm text-[#1D3557] block mb-3 border-b border-dashed border-[#1D3557]/20 pb-1.5">
               👁 LOAD HARMONIC WAVE MODEL
             </span>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-center mb-4">
+            <div className="flex flex-wrap gap-2 justify-center mb-4">
               {['sine', 'square', 'sawtooth', 'triangle'].map(type => (
                 <button
                   key={type}
                   onClick={() => loadPreset(type as any)}
-                  className="ticket-btn py-2 px-1 text-[9px] font-bold uppercase"
+                  className="ticket-btn py-2 px-2.5 text-[9px] font-bold uppercase flex-1 min-w-[70px]"
                 >
                   {type}
                 </button>
@@ -406,7 +406,7 @@ const FourierWaveformStudio = () => {
                 ref={timeCanvasRef}
                 width="500"
                 height="160"
-                className="block bg-[#F4ECD8] border border-[#C5A059]/40 max-w-full mx-auto"
+                className="block bg-[#F4ECD8] border border-[#C5A059]/40 w-full h-auto aspect-[25/8] mx-auto"
               />
             </div>
           </div>
@@ -420,7 +420,7 @@ const FourierWaveformStudio = () => {
                 ref={freqCanvasRef}
                 width="500"
                 height="160"
-                className="block bg-[#F4ECD8] border border-[#C5A059]/40 max-w-full mx-auto"
+                className="block bg-[#F4ECD8] border border-[#C5A059]/40 w-full h-auto aspect-[25/8] mx-auto"
               />
             </div>
 

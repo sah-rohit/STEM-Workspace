@@ -619,10 +619,10 @@ const NumericalPlayground = () => {
               </div>
 
               {/* Mode selects */}
-              <div className="flex gap-4 mb-6 bg-[#F5F1E8] p-2 border border-[#1D3557]/20">
+              <div className="flex flex-wrap gap-2 mb-6 bg-[#F5F1E8] p-2 border border-[#1D3557]/20">
                 <button
                   onClick={() => setSubMode('root')}
-                  className={`flex-1 font-display text-xs py-2 font-bold transition-all text-center ${
+                  className={`flex-1 min-w-[150px] font-display text-xs py-2 font-bold transition-all text-center ${
                     subMode === 'root' ? 'bg-[#1D3557] text-[#F5F1E8]' : 'text-[#1D3557]/65 hover:text-[#1D3557]'
                   }`}
                 >
@@ -630,7 +630,7 @@ const NumericalPlayground = () => {
                 </button>
                 <button
                   onClick={() => setSubMode('integ')}
-                  className={`flex-1 font-display text-xs py-2 font-bold transition-all text-center ${
+                  className={`flex-1 min-w-[150px] font-display text-xs py-2 font-bold transition-all text-center ${
                     subMode === 'integ' ? 'bg-[#1D3557] text-[#F5F1E8]' : 'text-[#1D3557]/65 hover:text-[#1D3557]'
                   }`}
                 >
@@ -748,7 +748,7 @@ const NumericalPlayground = () => {
                     </div>
                   </div>
 
-                  <div className="flex justify-center gap-3 pt-2">
+                  <div className="flex flex-wrap justify-center gap-2 pt-2">
                     <button onClick={() => loadPreset('x2')} className="ticket-btn text-[10px] py-1 px-2.5 bg-[#1D3557] text-white">Load x² (Analytical)</button>
                     <button onClick={() => loadPreset('sinx')} className="ticket-btn text-[10px] py-1 px-2.5 bg-[#1D3557] text-white">Load sin(x) (Analytical)</button>
                   </div>
@@ -756,17 +756,17 @@ const NumericalPlayground = () => {
               )}
 
               {/* Action Buttons */}
-              <div className="flex gap-4 mt-6 pt-4 border-t-2 dashed border-[#1D3557]/15">
+              <div className="flex flex-wrap gap-3 mt-6 pt-4 border-t-2 dashed border-[#1D3557]/15">
                 <button 
                   onClick={executePlayground}
-                  className="ticket-btn flex-1 bg-[#E63946] text-white hover:bg-[#1D3557] font-bold text-xs py-2.5 px-4 flex items-center justify-center gap-1.5"
+                  className="ticket-btn flex-1 min-w-[200px] bg-[#E63946] text-white hover:bg-[#1D3557] font-bold text-xs py-2.5 px-4 flex items-center justify-center gap-1.5"
                 >
                   <Play className="w-4 h-4" />
                   PLOT & COMPUTE APPARATUS
                 </button>
                 <button 
                   onClick={clearInputs}
-                  className="ticket-btn bg-[#1D3557] text-white hover:bg-red-800 font-bold text-xs py-2.5 px-4"
+                  className="ticket-btn flex-1 sm:flex-initial bg-[#1D3557] text-white hover:bg-red-800 font-bold text-xs py-2.5 px-4 text-center"
                 >
                   WIPE PLOTTER
                 </button>

@@ -570,17 +570,17 @@ const ChemBalancer = () => {
               </div>
 
               {/* Action Buttons */}
-              <div className="flex gap-4 border-t border-dashed border-[#1D3557]/10 pt-4 mb-6">
+              <div className="flex flex-wrap gap-3 border-t border-dashed border-[#1D3557]/10 pt-4 mb-6">
                 <button 
                   onClick={balanceReaction}
-                  className="ticket-btn flex-1 bg-[#E63946] text-white hover:bg-[#1D3557] font-bold text-xs py-2.5 px-4 flex items-center justify-center gap-1.5"
+                  className="ticket-btn flex-1 min-w-[200px] bg-[#E63946] text-white hover:bg-[#1D3557] font-bold text-xs py-2.5 px-4 flex items-center justify-center gap-1.5"
                 >
                   <FlaskConical className="w-4 h-4" />
                   COMPUTE MASS BALANCE
                 </button>
                 <button 
                   onClick={wipeLabCounter}
-                  className="ticket-btn bg-[#1D3557] text-white hover:bg-red-800 font-bold text-xs py-2.5 px-4"
+                  className="ticket-btn flex-1 sm:flex-initial bg-[#1D3557] text-white hover:bg-red-800 font-bold text-xs py-2.5 px-4 text-center"
                 >
                   WIPE COUNTER
                 </button>

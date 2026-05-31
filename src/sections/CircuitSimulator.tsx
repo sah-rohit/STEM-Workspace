@@ -578,11 +578,11 @@ const CircuitSimulator = () => {
                 <span className="font-display text-[10px] text-[#C5A059] block mb-2">SCHEMATIC LOGGED COMPONENTS:</span>
                 <div className="max-h-[140px] overflow-y-auto space-y-1.5 pr-1">
                   {gates.map(g => (
-                    <div key={g.id} className="flex items-center justify-between bg-[#F5F1E8] px-2.5 py-1.5 border border-[#1D3557]/10 font-body text-[11px] text-[#1D3557]">
-                      <span className="font-bold">[G{g.id}] {g.type} ({g.in1}{g.in2 ? `, ${g.in2}` : ''})</span>
+                    <div key={g.id} className="flex items-center justify-between gap-2 bg-[#F5F1E8] px-2.5 py-1.5 border border-[#1D3557]/10 font-body text-[11px] text-[#1D3557] overflow-hidden">
+                      <span className="font-bold truncate pr-1">[G{g.id}] {g.type} ({g.in1}{g.in2 ? `, ${g.in2}` : ''})</span>
                       <button 
                         onClick={() => handleDeleteGate(g.id)}
-                        className="text-[#E63946] hover:underline flex items-center font-bold text-[10px]"
+                        className="text-[#E63946] hover:underline flex items-center font-bold text-[10px] flex-shrink-0"
                       >
                         <Trash2 className="w-3 h-3 mr-0.5" /> SHRED
                       </button>
@@ -633,7 +633,7 @@ const CircuitSimulator = () => {
                 ref={canvasRef}
                 width="520"
                 height="260"
-                className="block bg-[#F4ECD8] border border-[#C5A059]/40 w-full min-h-[220px] sm:min-h-[280px]"
+                className="block bg-[#F4ECD8] border border-[#C5A059]/40 w-full h-auto aspect-[2/1] min-h-0"
               />
             </div>
 
