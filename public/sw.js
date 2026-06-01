@@ -12,7 +12,9 @@ self.addEventListener('install', (event) => {
         './',
         './index.html',
         './manifest.json',
-        './favicon.svg'
+        './favicon.svg',
+        './assets/index.js',
+        './assets/index.css'
       ]);
     })
   );
