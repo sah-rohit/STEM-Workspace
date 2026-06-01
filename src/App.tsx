@@ -20,6 +20,9 @@ import SolarROICalculator from './sections/SolarROICalculator';
 import PediatricDoseHelper from './sections/PediatricDoseHelper';
 import LeakCostCalculator from './sections/LeakCostCalculator';
 import CarbonTravelPlanner from './sections/CarbonTravelPlanner';
+import SymbolicCalculusLab from './sections/SymbolicCalculusLab';
+import BarnesHutSimulator from './sections/BarnesHutSimulator';
+import BayesianInferenceLab from './sections/BayesianInferenceLab';
 
 import { Terminal, Shield, FileText, Gift, Award, AlertTriangle, Check, Info, X, Atom, Compass, Globe, Sun, Droplet, Shield as ShieldIcon } from 'lucide-react';
 
@@ -257,6 +260,57 @@ const APPARATUS_LIST = [
       'Interactive canvas vertical comparison bar chart'
     ],
     longDesc: 'Calculates the carbon footprint of trips across travel options. Includes flight atmospheric multipliers and grid calculations for trains.'
+  },
+  {
+    id: 'symbolic-calculus-lab',
+    name: 'XIV. Symbolic Calculus',
+    component: SymbolicCalculusLab,
+    desc: 'Symbolic Differentiation & Expression Simplifier',
+    discipline: 'ALGEBRA & CALCULUS',
+    icon: '📐',
+    formula: 'd/dx[ f(g(x)) ] = f\'(g(x)) * g\'(x)',
+    features: [
+      'Symbolic step-by-step derivative explainer calculations',
+      'Simplifies algebraic equations automatically client-side',
+      'Renders standard KaTeX LaTeX math notations fully offline',
+      'Interactive animated SVG AST parse tree structure walkthrough',
+      'Evaluate transcendental operations (trig, exp, log)'
+    ],
+    longDesc: 'A client-side computer algebra system (CAS). Enter arbitrary mathematical formulas to solve step-by-step symbolic derivatives, simplify polynomials, and trace compiled syntax trees interactively.'
+  },
+  {
+    id: 'barnes-hut-simulator',
+    name: 'XV. Gravity Simulator',
+    component: BarnesHutSimulator,
+    desc: 'N-Body Gravity Simulator with Barnes-Hut Tree',
+    discipline: 'PHYSICS & ENGINEERING',
+    icon: '⚙️',
+    formula: 'F_ij = G * m_i * m_j / r_ij² | Complexity: O(N log N)',
+    features: [
+      'Recursive 2D Quadtree spatial partitions integrations',
+      'Barnes-Hut approximation drops complexity from O(N²) to O(N log N)',
+      'Visualizes active quadtree division cells overlay grid',
+      'Click and drag to launch planets with speed velocity vectors',
+      'Saves and exports/imports system orbital vectors as JSON state'
+    ],
+    longDesc: 'A real-time cosmological n-body gravity simulator driven by a recursive quadtree spatial index. Allows rendering hundreds of orbiting particles, coalescing mass merges, and elastic collision bounds fully client-side.'
+  },
+  {
+    id: 'bayesian-inference-lab',
+    name: 'XVI. Bayesian Engine',
+    component: BayesianInferenceLab,
+    desc: 'Interactive Bayesian Inference & Conjugate Models',
+    discipline: 'ALGEBRA & CALCULUS',
+    icon: '📊',
+    formula: 'P(θ|D) = [ P(D|θ) * P(θ) ] / ∫ P(D|θ) * P(θ) dθ',
+    features: [
+      'Beta and Gaussian prior parameters sliders real-time updating',
+      'Binomial, Poisson, and Normal observed data likelihoods',
+      'Solves exact conjugate parameters and grid approximations',
+      'Identifies 95% Bayesian Highest Density Interval (HDI) credible bounds',
+      'Plots dynamic probability curves on a vintage vector SVG graph'
+    ],
+    longDesc: 'An interactive statistical inference laboratory. Adjust sliders to inspect how conjugate priors or numerical grid approximations converge into posterior densities given observed successes or average samples.'
   }
 ];
 
@@ -297,6 +351,48 @@ function App() {
 
   // 7. Navigation Routing Tab ('landing' = Hero + Showcase Directory, 'workspace' = Viewport Cabinet)
   const [currentTab, setCurrentTab] = useState<'landing' | 'workspace'>('landing');
+
+  // 8. Help Manual Modal State
+  const [helpModalAppId, setHelpModalAppId] = useState<string | null>(null);
+
+  const handleOpenHelpManual = (appId: string) => {
+    setHelpModalAppId(appId);
+  };
+
+  const handleExportActiveLedger = (appId: string) => {
+    const cabinet = document.getElementById('workshop-cabinet');
+    const pre = cabinet?.querySelector('pre');
+    if (pre && pre.innerText.trim()) {
+      const logText = pre.innerText;
+      
+      const borderChar = '*';
+      const lineLength = 62;
+      const horizontalLine = borderChar.repeat(lineLength);
+      
+      const formattedTicket = 
+        `/${horizontalLine}\\\n` +
+        `*  STEM APPARATUS WORKBENCH REPORT TICKET                     *\n` +
+        `*  Apparatus: ${APPARATUS_LIST.find(a => a.id === appId)?.name.substring(3).padEnd(46)} *\n` +
+        `*  Date:      ${new Date().toLocaleString().padEnd(46)} *\n` +
+        `*${' '.repeat(lineLength - 2)}*\n` +
+        logText.split('\n').map(line => {
+          const content = line.trimEnd();
+          if (content.length <= lineLength - 6) {
+            return `*  ${content.padEnd(lineLength - 6)}  *`;
+          } else {
+            return `*  ${content.substring(0, lineLength - 9)}...  *`;
+          }
+        }).join('\n') + '\n' +
+        `*${' '.repeat(lineLength - 2)}*\n` +
+        `*  SOLO STUDENT PROJECT CALIBRATION PROTOCOL                   *\n` +
+        `\\${horizontalLine}/`;
+
+      navigator.clipboard.writeText(formattedTicket);
+      window.showAtelierToast("Analytical ledger ticket copied to clipboard!", "success");
+    } else {
+      window.showAtelierToast("No active analytical calculation logs found to export.", "warning");
+    }
+  };
 
   // Register window methods directly in render to ensure they are immediately bound and never stale!
   window.changeSTEMApparatus = (id) => {
@@ -828,6 +924,75 @@ function App() {
             <span className="font-body text-[8px] text-[#1D3557]/40 uppercase text-center mt-2">TRAVEL MULTI-MODE CARBON BALANCE</span>
           </div>
         );
+      case 'symbolic-calculus-lab':
+        return (
+          <div className="border-2 border-[#1D3557] bg-[#F5F1E8] p-4 flex flex-col justify-between h-56 relative select-none">
+            <div className="border-b border-[#1D3557]/20 pb-1 mb-2 flex justify-between font-mono text-[8px] text-[#1D3557]/60">
+              <span>SCHEMATIC: CALC-S14</span>
+              <span>SYMBOLIC DERIVATIVES</span>
+            </div>
+            <div className="flex-1 flex items-center justify-center">
+              <svg className="w-full h-24 text-[#1D3557]" viewBox="0 0 160 80">
+                <circle cx="80" cy="18" r="4.5" fill="#E63946" stroke="currentColor" strokeWidth="1" />
+                <circle cx="45" cy="45" r="4" fill="#1D3557" stroke="currentColor" strokeWidth="1" />
+                <circle cx="115" cy="45" r="4" fill="#1D3557" stroke="currentColor" strokeWidth="1" />
+                <line x1="77" y1="21" x2="48" y2="42" stroke="currentColor" strokeWidth="1" />
+                <line x1="83" y1="21" x2="112" y2="42" stroke="currentColor" strokeWidth="1" />
+                
+                <text x="80" y="29" fontSize="6" fontFamily="monospace" textAnchor="middle" fill="#E63946">*</text>
+                <text x="45" y="55" fontSize="6" fontFamily="monospace" textAnchor="middle">sin</text>
+                <text x="115" y="55" fontSize="6" fontFamily="monospace" textAnchor="middle">exp</text>
+                <text x="80" y="70" fontSize="7" fontFamily="monospace" textAnchor="middle" fill="#E63946" fontWeight="bold">d/dx [sin(u)] = cos(u) * u\'</text>
+              </svg>
+            </div>
+            <span className="font-body text-[8px] text-[#1D3557]/40 uppercase text-center mt-2">RECURSIVE AST CALCULUS DIFFERENTIATION</span>
+          </div>
+        );
+      case 'barnes-hut-simulator':
+        return (
+          <div className="border-2 border-[#1D3557] bg-[#F5F1E8] p-4 flex flex-col justify-between h-56 relative overflow-hidden select-none">
+            <div className="border-b border-[#1D3557]/20 pb-1 mb-2 flex justify-between font-mono text-[8px] text-[#1D3557]/60">
+              <span>SCHEMATIC: COSMO-G15</span>
+              <span>BARNES-HUT SIM</span>
+            </div>
+            <div className="flex-1 flex items-center justify-center">
+              <svg className="w-full h-24 text-[#1D3557]" viewBox="0 0 160 80">
+                <rect x="25" y="5" width="110" height="70" fill="none" stroke="rgba(230,57,70,0.12)" strokeWidth="0.8" />
+                <line x1="80" y1="5" x2="80" y2="75" stroke="rgba(230,57,70,0.12)" strokeWidth="0.8" />
+                <line x1="25" y1="40" x2="135" y2="40" stroke="rgba(230,57,70,0.12)" strokeWidth="0.8" />
+                
+                <circle cx="80" cy="40" r="6" fill="#C5A059" stroke="currentColor" strokeWidth="1" />
+                <circle cx="50" cy="20" r="2.5" fill="#E63946" />
+                <circle cx="110" cy="60" r="3" fill="#1D3557" />
+                <circle cx="65" cy="55" r="1.5" fill="#1D3557" />
+                <circle cx="95" cy="25" r="2.0" fill="#E63946" />
+                
+                <circle cx="80" cy="40" r="35" fill="none" stroke="currentColor" strokeWidth="0.5" strokeDasharray="2 3" />
+                <text x="80" y="4" fontSize="5" fontFamily="monospace" textAnchor="middle">Complexity: O(N log N)</text>
+              </svg>
+            </div>
+            <span className="font-body text-[8px] text-[#1D3557]/40 uppercase text-center mt-2">QUADTREE CELL SPATIAL ORBITAL INTEGRATOR</span>
+          </div>
+        );
+      case 'bayesian-inference-lab':
+        return (
+          <div className="border-2 border-[#1D3557] bg-[#F5F1E8] p-4 flex flex-col justify-between h-56 relative select-none">
+            <div className="border-b border-[#1D3557]/20 pb-1 mb-2 flex justify-between font-mono text-[8px] text-[#1D3557]/60">
+              <span>SCHEMATIC: BAYES-B16</span>
+              <span>CONJUGATE DENSITIES</span>
+            </div>
+            <div className="flex-1 flex items-center justify-center">
+              <svg className="w-full h-24 text-[#1D3557]" viewBox="0 0 160 80">
+                <line x1="15" y1="70" x2="145" y2="70" stroke="currentColor" strokeWidth="1" />
+                <path d="M 20,70 Q 55,60 80,50 T 140,70" stroke="#1D3557" strokeWidth="1" strokeDasharray="2 2" fill="none" />
+                <path d="M 20,70 Q 95,20 140,70" stroke="#C5A059" strokeWidth="0.8" strokeDasharray="1 1" fill="none" />
+                <path d="M 20,70 Q 82,10 140,70" stroke="#E63946" strokeWidth="2.2" fill="none" />
+                <text x="110" y="24" fontSize="6" fontFamily="monospace" fill="#E63946" fontWeight="bold">95% HDI</text>
+              </svg>
+            </div>
+            <span className="font-body text-[8px] text-[#1D3557]/40 uppercase text-center mt-2">BAYESIAN INFERENCE EXPECTATION DENSITY</span>
+          </div>
+        );
       default:
         return null;
     }
@@ -1162,6 +1327,22 @@ function App() {
                       <p className="font-body text-xs text-[#E63946] uppercase font-bold tracking-widest mt-2">
                         {APPARATUS_LIST.find(a => a.id === activeApparatus)?.desc}
                       </p>
+
+                      {/* Global Apparatus Utility Actions: Help Manual & Export Ticket */}
+                      <div className="mt-4 flex flex-wrap gap-3 justify-center relative z-10">
+                        <button
+                          onClick={() => handleOpenHelpManual(activeApparatus)}
+                          className="ticket-btn text-[9px] py-1 px-4 bg-[#1D3557] hover:bg-[#E63946] text-white flex items-center gap-1.5"
+                        >
+                          [ 📖 APPARATUS PROTOCOL MANUAL ]
+                        </button>
+                        <button
+                          onClick={() => handleExportActiveLedger(activeApparatus)}
+                          className="ticket-btn text-[9px] py-1 px-4 bg-[#E63946] hover:bg-[#1D3557] text-white flex items-center gap-1.5"
+                        >
+                          [ 📤 SHARE RESULTS TICKET ]
+                        </button>
+                      </div>
                       
                       {/* Central Drawer quick switcher tabs */}
                       <div className="mt-6 flex flex-wrap gap-2 justify-center max-w-5xl mx-auto border-t border-dashed border-[#1D3557]/20 pt-4">
@@ -1208,7 +1389,7 @@ function App() {
       {/* Custom alert and dialogs remain identical */}
       {alertConfig && alertConfig.show && (
         <div className="fixed inset-0 z-[100] bg-black/45 backdrop-blur-sm flex items-center justify-center p-6 animate-fadeIn">
-          <div className="w-full max-w-md bg-[#FFFDF0] border-4 double border-[#1D3557] p-6 shadow-2xl relative ticket-btn overflow-visible">
+          <div className="w-full max-w-md bg-[#FFFDF0] border-4 double border-[#1D3557] p-6 shadow-2xl relative overflow-visible">
             <div className="absolute top-1/2 -left-3 w-5 h-5 bg-[#1D3557] rounded-full border border-[#FFFDF0]" />
             <div className="absolute top-1/2 -right-3 w-5 h-5 bg-[#1D3557] rounded-full border border-[#FFFDF0]" />
             <div className="flex items-center gap-3 border-b border-dashed border-[#1D3557]/20 pb-3 mb-4">
@@ -1254,7 +1435,7 @@ function App() {
 
       {toastConfig && toastConfig.show && (
         <div className="fixed bottom-6 right-6 z-[120] animate-slideIn select-none">
-          <div className="bg-[#F4ECD8] border-2 border-[#C5A059] p-4 shadow-xl max-w-sm flex items-center gap-3 relative ticket-btn overflow-visible">
+          <div className="bg-[#F4ECD8] border-2 border-[#C5A059] p-4 shadow-xl max-w-sm flex items-center gap-3 relative overflow-visible">
             {toastConfig.type === 'success' && <Check className="w-5 h-5 text-green-700 flex-shrink-0" />}
             {toastConfig.type === 'warning' && <AlertTriangle className="w-5 h-5 text-[#E63946] flex-shrink-0" />}
             {toastConfig.type === 'info' && <Info className="w-5 h-5 text-[#1D3557] flex-shrink-0" />}
@@ -1464,6 +1645,79 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
             </div>
 
+          </div>
+        </div>
+      )}
+
+      {helpModalAppId && (
+        <div className="fixed inset-0 z-[200] bg-black/55 backdrop-blur-sm flex items-center justify-center p-6 animate-fadeIn">
+          <div className="w-full max-w-2xl bg-[#FFFDF0] border-4 double border-[#1D3557] p-6 shadow-2xl relative flex flex-col gap-5 max-h-[90vh] overflow-y-auto animate-fadeIn select-text ticket-btn overflow-visible">
+            <div className="absolute top-1/2 -left-3 w-5 h-5 bg-[#1D3557] rounded-full border border-[#FFFDF0]" />
+            <div className="absolute top-1/2 -right-3 w-5 h-5 bg-[#1D3557] rounded-full border border-[#FFFDF0]" />
+            
+            <button 
+              onClick={() => setHelpModalAppId(null)}
+              className="absolute top-3 right-3 text-[#1D3557] hover:text-[#E63946]"
+            >
+              <X className="w-6 h-6" />
+            </button>
+
+            <div className="border-b-2 dashed border-[#1D3557]/20 pb-3 mb-1">
+              <span className="font-display text-xs text-[#E63946] tracking-widest block mb-1">★ APPARATUS MANUAL SPECIFICATION ★</span>
+              <h3 className="font-display text-xl sm:text-2xl text-[#1D3557] leading-none">
+                {APPARATUS_LIST.find(a => a.id === helpModalAppId)?.name}
+              </h3>
+              <span className="font-body text-[10px] text-[#1D3557]/60 uppercase font-bold tracking-widest mt-1 block">
+                {APPARATUS_LIST.find(a => a.id === helpModalAppId)?.discipline} • SERIAL CALIBRATION v1956
+              </span>
+            </div>
+
+            <div className="space-y-4 font-body text-xs text-[#1D3557]/80 leading-relaxed">
+              <div>
+                <span className="font-display text-[9px] text-[#C5A059] block mb-1 font-bold uppercase">🔬 SCIENTIFIC DISCIPLINE SUMMARY:</span>
+                <p className="bg-[#F5F1E8] border border-[#1D3557]/10 p-3 italic">
+                  "{APPARATUS_LIST.find(a => a.id === helpModalAppId)?.longDesc}"
+                </p>
+              </div>
+
+              <div>
+                <span className="font-display text-[9px] text-[#C5A059] block mb-1 font-bold uppercase">🔬 GOVERNING PHYSICS FORMULA:</span>
+                <div className="w-full bg-[#1D3557] text-[#FFFDF0] p-2.5 font-mono text-center select-all border border-[#1D3557]">
+                  {APPARATUS_LIST.find(a => a.id === helpModalAppId)?.formula}
+                </div>
+              </div>
+
+              <div className="space-y-1.5">
+                <span className="font-display text-[9px] text-[#C5A059] block font-bold uppercase">★ TARGET CAPABILITIES & TARGETS:</span>
+                <div className="grid sm:grid-cols-2 gap-x-4 gap-y-1.5">
+                  {APPARATUS_LIST.find(a => a.id === helpModalAppId)?.features.map((feat, fidx) => (
+                    <div key={fidx} className="flex items-start gap-1.5 text-[10px] font-semibold leading-snug">
+                      <span className="text-[#E63946] flex-shrink-0 mt-0.5">•</span>
+                      <span>{feat}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="border-t border-dashed border-[#1D3557]/15 pt-3 space-y-1">
+                <span className="font-display text-[9px] text-[#C5A059] block font-bold uppercase">⚙️ OPERATIONAL DIRECTIONS:</span>
+                <ol className="list-decimal list-inside space-y-1 text-[10px]">
+                  <li>Calibrate parameters using the input dials or coefficient matrix grids in the workbench.</li>
+                  <li>Perform calculations by triggering any of the calculation tickets under the actions cabinet.</li>
+                  <li>Examine the retro-typewritten output sheet ledger printed on the diagnostic punch receipt.</li>
+                  <li>Press <strong>[ 📤 SHARE RESULTS TICKET ]</strong> at the viewport header to copy or export your results ledger.</li>
+                </ol>
+              </div>
+            </div>
+
+            <div className="flex justify-end pt-3 border-t border-dashed border-[#1D3557]/20 mt-2">
+              <button 
+                onClick={() => setHelpModalAppId(null)}
+                className="ticket-btn text-xs py-1 px-5 bg-[#1D3557] text-white"
+              >
+                [ ACKNOWLEDGE CALIBRATION ]
+              </button>
+            </div>
           </div>
         </div>
       )}

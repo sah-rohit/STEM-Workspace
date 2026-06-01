@@ -66,7 +66,8 @@ self.addEventListener('fetch', (event) => {
         return cache.match(request).then((cachedResponse) => {
           const fetchPromise = fetch(request)
             .then((networkResponse) => {
-              if (networkResponse && networkResponse.status === 200) {
+              // Cache both successful (200) and opaque (0) cross-origin assets like Google Fonts
+              if (networkResponse && (networkResponse.status === 200 || networkResponse.status === 0)) {
                 cache.put(request, networkResponse.clone());
               }
               return networkResponse;

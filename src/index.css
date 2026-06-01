@@ -40,7 +40,7 @@
   
   body {
     @apply bg-background text-foreground px-2.5 lg:px-0;
-    font-family: 'Inconsolata', 'Cutive Mono', monospace;
+    font-family: 'Inconsolata', 'Cutive Mono', 'Courier New', Courier, monospace;
     overflow-x: hidden;
   }
 }
@@ -66,14 +66,14 @@
 
 /* Western Slab Serif Display Font */
 .font-display {
-  font-family: 'Londrina Solid', cursive;
+  font-family: 'Londrina Solid', 'Impact', 'Trebuchet MS', 'Arial Black', sans-serif;
   font-weight: 400;
   letter-spacing: 0.02em;
   text-transform: uppercase;
 }
 
 .font-display-alt {
-  font-family: 'Cutive Mono', monospace;
+  font-family: 'Cutive Mono', 'Courier New', Courier, monospace;
   font-weight: 400;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -81,7 +81,7 @@
 
 /* Typewriter Body Font */
 .font-body {
-  font-family: 'Inconsolata', monospace;
+  font-family: 'Inconsolata', 'Courier New', Courier, monospace;
 }
 
 @layer components {

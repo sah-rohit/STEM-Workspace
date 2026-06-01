@@ -37,7 +37,9 @@ const Navigation = () => {
         { id: 'equation-solver', label: 'II. Equation Solver' },
         { id: 'chem-balancer', label: 'III. Chem Balancer' },
         { id: 'numerical-playground', label: 'IV. Numerical Plotter' },
-        { id: 'stats-explorer', label: 'V. Statistics Explorer' }
+        { id: 'stats-explorer', label: 'V. Statistics Explorer' },
+        { id: 'symbolic-calculus-lab', label: 'XIV. Symbolic Calculus' },
+        { id: 'bayesian-inference-lab', label: 'XVI. Bayesian Engine' }
       ]
     },
     {
@@ -48,7 +50,8 @@ const Navigation = () => {
         { id: 'logic-gate-simulator', label: 'VI. Circuit Simulator' },
         { id: 'geometry-lab', label: 'VII. Geometry Lab' },
         { id: 'fourier-waveform-studio', label: 'VIII. Fourier Studio' },
-        { id: 'graph-algorithm-visualizer', label: 'IX. Graph Visualizer' }
+        { id: 'graph-algorithm-visualizer', label: 'IX. Graph Visualizer' },
+        { id: 'barnes-hut-simulator', label: 'XV. Gravity Simulator' }
       ]
     },
     {
