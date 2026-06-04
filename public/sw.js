@@ -40,6 +40,9 @@ self.addEventListener('fetch', (event) => {
   // Only handle GET requests
   if (request.method !== 'GET') return;
 
+  // Only handle http/https requests (ignore data: URIs, chrome extensions, etc.)
+  if (!request.url.startsWith('http')) return;
+
   const isNavigation = request.mode === 'navigate' || 
                        request.url.endsWith('/') || 
                        request.url.endsWith('index.html');
@@ -58,25 +61,29 @@ self.addEventListener('fetch', (event) => {
           return networkResponse;
         })
         .catch(() => {
-          return caches.match(request);
+          return caches.match(request, { ignoreSearch: true, ignoreVary: true })
+            .then((response) => response || caches.match('./index.html', { ignoreSearch: true, ignoreVary: true }));
         })
     );
   } else {
     // Stale-While-Revalidate strategy for static assets (JS, CSS, SVGs, Fonts)
     event.respondWith(
       caches.open(CACHE_NAME).then((cache) => {
-        return cache.match(request).then((cachedResponse) => {
-          const fetchPromise = fetch(request)
-            .then((networkResponse) => {
-              // Cache both successful (200) and opaque (0) cross-origin assets like Google Fonts
-              if (networkResponse && (networkResponse.status === 200 || networkResponse.status === 0)) {
-                cache.put(request, networkResponse.clone());
-              }
-              return networkResponse;
-            })
-            .catch(() => cachedResponse);
+        return cache.match(request, { ignoreSearch: true, ignoreVary: true }).then((cachedResponse) => {
+          const fetchPromise = fetch(request).then((networkResponse) => {
+            if (networkResponse && (networkResponse.status === 200 || networkResponse.status === 0)) {
+              cache.put(request, networkResponse.clone());
+            }
+            return networkResponse;
+          });
 
-          return cachedResponse || fetchPromise;
+          if (cachedResponse) {
+            // Prevent uncaught errors in the background fetch from throwing exceptions
+            fetchPromise.catch(() => {});
+            return cachedResponse;
+          }
+
+          return fetchPromise;
         });
       })
     );
